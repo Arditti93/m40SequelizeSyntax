@@ -1,0 +1,25 @@
+{
+  "name": "m40sequelizesyntax",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arditti93/m40SequelizeSyntax.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arditti93/m40SequelizeSyntax/issues"
+  },
+  "homepage": "https://github.com/Arditti93/m40SequelizeSyntax#readme",
+  "dependencies": {
+    "dotenv": "^16.0.2",
+    "mysql2": "^2.3.3",
+    "sequelize": "^6.21.6"
+  }
+}
