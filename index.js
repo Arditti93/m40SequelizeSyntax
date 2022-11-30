@@ -190,7 +190,12 @@ const findInvoices = async () => {
 //case statement
 const caseStatments = async () => {
     const [results] = await sequelize.query(
-        "SELECT amount id, CASE WHEN amount < 350 THEN 'invoice is less than 350' WHEN amount > 350 THEN 'invoice is greater than 350' ELSE 'invoice is a different amount' END AS 'invoice amount' FROM Invoices"
+        `SELECT amount id, 
+        CASE WHEN amount < 350 THEN 'invoice is less than 350' 
+        WHEN amount > 350 THEN 'invoice is greater than 350' 
+        ELSE 'invoice is a different amount' 
+        END AS 'invoice amount' 
+        FROM Invoices`
     )
     console.log(results)
 }
