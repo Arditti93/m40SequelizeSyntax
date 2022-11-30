@@ -76,6 +76,7 @@ const displayTables = async () => {
         let usersList = await User.findAll({
             attributes: ['id', 'firstName']
         })
+        console.log("Users Table")
         //Display Users table as table in the console
         console.table(usersList.map(value => value.dataValues)) 
 
@@ -83,6 +84,7 @@ const displayTables = async () => {
         let invoiceList = await Invoice.findAll({
             attributes: ['id', 'amount', 'userId']
         })
+        console.log("Invoices Table")
         //Invoices table in a console table
         console.table(invoiceList.map(value => value.dataValues)) 
 
@@ -92,7 +94,7 @@ const displayTables = async () => {
     }
 }
 
-displayTables()
+// displayTables()
 
 //The Invoices table stores the userId of the user who created the invoice row.
 //id is the primary key in the users table and the forigen key in invoices table 
@@ -141,7 +143,7 @@ const sequelizeJoin = async () => {
 
     //With an INNER JOIN, the data from the Users row will 
     //be excluded when there are no related Invoices data for that row.
-    
+
     console.log(JSON.stringify(innerJoin, null, 2))
 }
 //  sequelizeJoin()
@@ -171,7 +173,33 @@ const addInvoice = async () => {
     console.table(findInvoice.map(value => value.dataValues)) 
 
 }
-addInvoice() 
+// addInvoice() 
+
+//find all invoices for Alice user using a join
+const findInvoices = async () => {
+    let user = "Alice"
+    const [results] = await sequelize.query (
+        `SELECT  Invoices.id AS invoiceID, Invoices.amount, Users.firstName FROM Users 
+        INNER JOIN Invoices ON Invoices.userId = Users.id WHERE Users.firstName = '${user}'`
+    )
+    console.log("Join")
+    console.table(results.map(value => value))
+}
+// findInvoices()
+
+//case statement
+const caseStatments = async () => {
+    const [results] = await sequelize.query(
+        "SELECT amount id, CASE WHEN amount < 350 THEN 'invoice is less than 350' WHEN amount > 350 THEN 'invoice is greater than 350' ELSE 'invoice is a different amount' END AS 'invoice amount' FROM Invoices"
+    )
+    console.log(results)
+}
+
+caseStatments()
+
+
+
+
 
 
 
